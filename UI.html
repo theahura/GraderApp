@@ -1,0 +1,460 @@
+<!-- 
+Amol Kapoor 2014
+All Rights Reserved
+-->
+<html>
+    <head>
+        <script src="JS/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+            	//fades
+                $('.center-panel').fadeIn(1000, function(){
+                    $('.header').animate({"padding-top":"0px"}, 600, function(){
+                        $('#ul-wrapper').fadeIn(800);
+                    });
+                });
+
+                //these move locations
+                $('a#to_main').click(function(){
+                    $('.center-panel').animate({"left":"-25%"}, 600);
+                    $('#main-panel').animate({"left":"37.5%"},600);
+                });              
+                $('#Edit_Classes').click(function(){
+                	$('#main-panel').animate({"left":"-25%"}, 600);
+                    $('#classes-panel').animate({"left":"37.5%"},600);
+                });
+                $('#Add_Class').click(function(){
+                	$('#classes-panel').animate({"left":"-25%"}, 600);
+                    $('#add-classes-panel').animate({"left":"37.5%"},600);
+                });
+                $('#Edit_Grades').click(function(){
+                	$('#main-panel').animate({"left":"-25%"}, 600);
+                    $('#grades-panel').animate({"left":"37.5%"},600);
+                });
+                $('#Add_Grade').click(function(){
+                	$('#grades-panel').animate({"left":"-25%"}, 600);
+                    $('#add-grades-panel').animate({"left":"37.5%"},600);
+                });
+                
+                //back buttons
+                $('.back-to-main').click(function(){
+                    $('#main-panel').animate({"left":"37.5%"}, 600);
+                    $('#grades-panel, #classes-panel').animate({"left":"115%"},600);
+                });
+                $('.back-to-grades').click(function(){
+                    $('#grades-panel').animate({"left":"37.5%"}, 600);
+                    $('#add-grades-panel').animate({"left":"115%"},600);
+                });
+                $('.back-to-classes, .submit-new-class').click(function(){
+                    $('#classes-panel').animate({"left":"37.5%"}, 600);
+                    $('#add-classes-panel, #edit-classes-panel').animate({"left":"115%"},600);
+
+                    //resets homework-adding counter
+                	$('.add-homework-container').remove();
+                });
+
+            });
+        </script>
+        <style type="text/css">
+            html,body
+            {
+                font-family:"Raleway", "sans-serif";
+                font-weight:100;
+                -webkit-font-smoothing:antialiased;
+                color:#42A6F3;
+                min-height: 400px;
+                min-width: 1171px;
+                overflow:hidden;
+            }
+
+
+            .button
+            {
+                cursor:pointer;
+            }
+
+
+            .center-panel
+            {
+                position:absolute;
+                display:none;
+                left:37.5%;
+                top: 25%;
+                height:40%;
+                width:25%;
+                text-align:center;
+                font-size:100px;
+            }
+
+
+            #main-panel, #grades-panel, #classes-panel, #add-grades-panel, #add-classes-panel, #edit-classes-panel
+            {
+                z-index: 1;
+                position:absolute;
+                left:115%;
+                top: 25%;
+                height:247px;
+                width:400px;
+                background-color:white;
+                text-align: center;
+            }
+
+            .main-button
+            {
+            	font-size: 40px;
+          		line-height: 20px;
+            }
+
+            .class-table-container
+            {
+            	display: none;
+
+            	font-size: 30px;
+            	font-weight: 400;
+
+                background-color:rgba(223,223,223, 0.4);
+
+            	height: 50px;
+
+            	border-top-left-radius:20px;
+				border-top-right-radius:20px;
+				border-bottom-right-radius:20px;
+				border-bottom-left-radius:20px;
+            }
+
+            .class-table-name
+           	{
+           		position: relative;
+           		top: 7px;
+           	}
+
+           	.add-homework-container, .add-homework-container-base
+           	{
+           		padding-top:50px;
+           		display: none;
+           	}
+
+           	.edit-class-container-base
+           	{
+           		display: none;
+           	}
+
+            .edit-class-container
+            {
+
+                background-color:rgba(223,223,223, 0.4);
+
+            	height: 50px;
+
+            	border-top-left-radius:20px;
+				border-top-right-radius:20px;
+				border-bottom-right-radius:20px;
+				border-bottom-left-radius:20px;
+            }
+
+            .edit-class-container .text
+            {
+            	position: relative;
+				top: 7px;
+				left: 10px;
+
+            	font-size: 30px;
+            	font-weight: 400;
+
+            	float:left;
+            }
+
+            .edit-class-container .open-button
+            {
+            	position: relative;
+				top: 12px;
+				right: 10px;
+				font-size: 25;
+				float: right;
+            }
+
+           	.grades-button, .classes-button
+            {
+            	font-size: 40px;
+          		line-height: 20px;
+            }
+	
+            .header
+            {
+                padding-top:50px;   
+            }
+            .header a
+            {
+                cursor:pointer;
+            }
+            #ul-wrapper
+            {
+                display:none;   
+            }
+            .top-panel
+            {
+                position:absolute;
+                width:100%;
+                height:50px;
+                text-align: right;
+                font-weight:300;
+            }
+            .pad
+            {
+                height:30%;
+                width:100%;
+                //background-color:black;
+            }
+            .pad2
+            {
+                height:10%;
+                width:100%;
+            }
+            .pad3
+            {
+                height:50%;
+                width:100%;
+            }
+            .c1
+            {
+                height:40%;
+                width:100%;
+                font-size:45px;
+                font-weight:200;
+            }
+            .c1 a
+            {
+                cursor:pointer;
+            }
+            
+            .dynamic-header
+            {
+                //margin-left:20px;
+                font-size:70px;
+                font-weight:100;
+            }
+            form
+            {
+                font-size:20px;
+                margin-left:20px;   
+                font-weight: 200;
+            }
+            form#x
+            {
+                margin-left:-60px;   
+            }
+            [type|=text],[type|=password], select
+            {
+                margin-top:-100px;
+                border:1px solid #aaa;
+                height:20px;
+            }
+
+            .demo-select
+            {
+                width: 143px;
+            }
+
+            input:focus
+            {
+                outline:0;
+            }
+            .back-container
+            {
+                position:absolute;
+                text-align: left;
+                font-size:40px;
+                cursor:pointer;
+                height:100%;
+                width:15%;
+            }  
+            .back-button
+            {
+                height:5%;   
+            }
+            .footer
+            {
+                position:fixed;
+                bottom:3px;
+                height:10px;
+                font-size:10px;
+                font-weight:300;
+            }
+            .spacer-40
+            {
+            	height:40px; 
+            }
+
+
+        </style>
+    </head>
+    
+    <body>
+
+        <div class="center-panel">
+            <div class="header"><a>Grader</a></div>
+            <div class="pad2"></div>
+            <div id="ul-wrapper">
+                <div class="pad"></div>
+                            <div class="c1">
+                                <a id="to_main">Enter App</a>
+                            </div>
+                        <div class="pad"></div>
+                </div>
+            </div>
+        </div>
+        <div id="main-panel">
+            <div class="dynamic-header">
+                Grader
+            </div>
+            
+            <div class="spacer-40"></div>
+            <div class="button main-button" id="Edit_Classes"> Edit Classes </div>
+            <div class="spacer-40"></div>
+			<div class="button main-button" id="Edit_Grades"> Edit Grades </div>
+			<div class="spacer-40"></div>
+			<div class="button main-button" id="Edit_Schedule"> Edit Schedule </div>
+
+        </div>
+
+        <div id="classes-panel">
+             <div class="back-container back-to-main">
+                <div class="pad3"></div>
+                    <div class="back-button"></div><i class="fa fa-chevron-left"></i>
+                <div class="pad3"></div>
+            </div>
+            <div class="dynamic-header">
+                Classes
+            </div>
+            <div class="spacer-40"></div>
+            <div class="button classes-button" id="Add_Class"> Add Class </div>
+            <div class="spacer-40"></div>
+
+            <div class="class-data-starting-placeholder"></div>
+            <!--add table stuff here with database integration-->
+        </div>
+        <div id="add-classes-panel">
+             <div class="back-container back-to-classes">
+                <div class="pad3"></div>
+                    <div class="back-button"></div><i class="fa fa-chevron-left"></i>
+                <div class="pad3"></div>
+            </div>
+            <div class="dynamic-header">
+                Add a Class
+            </div>
+            <div class="spacer-40"></div>
+
+        	<form>
+        	    <div class="pad2"></div>
+                <label> Class Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="text" id="Input_Class_Name" name="ClassName"/>
+                <div class="pad2"></div>
+               
+               	<div class="homework-starting-placeholder"></div>
+
+                <div class="pad2"></div>
+
+                <div class="button add-classes-form-button" id="Add_Homework_Type">Add Assignment Type</div>
+
+                <div class="pad2"></div>
+                <div class="button submit-new-class" id="Submit-Class"> Submit </div>
+            </form>
+        </div>
+        <div id="edit-classes-panel">
+        	 <div class="back-container back-to-classes">
+                <div class="pad3"></div>
+                    <div class="back-button"></div><i class="fa fa-chevron-left"></i>
+                <div class="pad3"></div>
+            </div>
+            <div class="dynamic-header">
+                Edit Class
+            </div>
+
+            <form>
+            	<div class="edit-homework-starting-placeholder"></div>
+
+
+
+                <div class="spacer-40"></div>
+
+                <div class="button edit-add-classes-form-button" id="Edit_Add_Homework_Type">Add New Assignment Type</div>
+
+                <div class="pad2"></div>
+                <div class="button submit-changed-class" id="Submit-Class-Edit"> Submit Changes </div>
+
+            </form>
+
+        </div>
+        <div id="grades-panel">
+             <div class="back-container back-to-main">
+                <div class="pad3"></div>
+                    <div class="back-button"></div><i class="fa fa-chevron-left"></i>
+                <div class="pad3"></div>
+            </div>
+            <div class="dynamic-header">
+                Grades
+            </div>
+            <div class="spacer-40"></div>
+            <div class="button grades-button" id="Add_Grade"> Add Grade </div>
+        	<!--add table stuff here with database integration-->
+        </div>
+        <div id="add-grades-panel">
+             <div class="back-container back-to-grades">
+                <div class="pad3"></div>
+                    <div class="back-button"></div><i class="fa fa-chevron-left"></i>
+                <div class="pad3"></div>
+            </div>
+            <div class="dynamic-header">
+                Add a Grade
+            </div>
+            <div class="spacer-40"></div>
+        	
+        	<form>
+        	    <div class="pad2"></div>
+        		<label> Class: </label> 
+                <select class="demo-select" id="demo_client_options">
+                </select>
+        	    <div class="pad2"></div>
+                <label> Assignment Name: &nbsp;&nbsp;</label> <input type="text" id="Name"/>
+                <div class="pad2"></div>
+                <label> Assignment Type: </label> 
+                <select class="demo-select" id="demo_client_options">
+                </select>
+                <div class="pad2"></div>
+                <label> Points Earned: &nbsp;&nbsp;&nbsp;</label> <input type="text" id="Room"/>
+                <div class="pad2"></div>
+                <div class="demo-submit-button" id="Submit"> Submit </div>
+            </form>
+        </div>
+
+        <div class="footer">
+            Diagraphic Technologies &copy;
+        </div>
+
+
+        <div class="edit-class-container-base" id="Edit_Container_0">
+            <div class="edit-class-text text">
+            </div>
+            <div class="open-button button">
+            	<i class="fa fa-plus-circle"></i>
+            </div>
+        </div>
+
+
+    	<div class="add-homework-container-base" id="Homework_Container_0">
+            <label> Assignment Type: </label> <input type="text" id="Input_Class_Name" name="AssignmentName"/>
+            <div class="pad2"></div>
+            <label> Points per Assignment: </label> <input type="text" id="Input_Class_Name" name="Points"/>
+        </div>
+
+        <div class="button class-table-container-base" id="Class_Container_0"> 
+        	<div class="button text class-table-name" id="Class_Container_Name"></div>
+        </div>
+
+
+        <script type="text/javascript" src="JS/grader.js"></script>
+
+    </body>
+</html>

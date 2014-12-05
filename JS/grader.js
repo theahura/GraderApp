@@ -54,7 +54,6 @@ function createCopy(base, start, id, class_name, name, counter)
     {
         $temp.insertAfter("div." + class_name +":last");
     }
-
     return $temp; 
 }
 
@@ -100,9 +99,13 @@ document.getElementById("Submit-Class").onclick = function()
     add_assignment_counter = 0;
 };
 
+
+//keeps track of number of temporary edit containers
+var temp_counter = 1;
+
 /*
     Click event on dynamically generated object
-    Creates editing field for a given clasis
+    Creates editing field for a given class
 */
 $("body").on("click", ".class-table-container", function(){
     
@@ -120,7 +123,12 @@ $("body").on("click", ".class-table-container", function(){
     $('#edit-classes-panel').animate({"left":"37.5%"}, 600); 
 });
 
-var temp_counter = 1;
+/*
+    When you go back to the main page, it clears the 'edit classes' panel for another class
+*/
+$("div.edit-classes").click(function(){
+    $("div.edit-class-container").detach();
+});
 
 function generateClassEditForm(key)
 {      
@@ -130,21 +138,38 @@ function generateClassEditForm(key)
 
      temp_div.find(".text").html(ClassData[key].ClassName);
 
+     temp_div.css('background-color', '#d3d3d3');
+
      temp_div.fadeIn(800);
     
      if(ClassData[key].AssignmentName)
      {
-         for(i = 0; i < ClassData[key].AssignmentName.length; i++)
-         {
-             temp_counter++;
+
+        if(ClassData[key].AssignmentName.constructor === Array)
+        {
+            for(i = 0; i < ClassData[key].AssignmentName.length; i++)
+            {
+                temp_counter++;
+                var temp_div_assignments = createCopy(".edit-class-container-base",
+                "edit-homework-starting-placeholder", "Edit_Container_",
+                "edit-class-container", "", temp_counter); 
+
+                temp_div_assignments.find(".text").html(ClassData[key].AssignmentName[i]);
+                temp_div_assignments.fadeIn(800);
+            }
+        }
+        else
+        {
+            temp_counter++;
              var temp_div_assignments = createCopy(".edit-class-container-base",
              "edit-homework-starting-placeholder", "Edit_Container_",
              "edit-class-container", "", temp_counter); 
 
-             temp_div_assignments.find(".text").html(ClassData[key].AssignmentName[i]);
+             temp_div_assignments.find(".text").html(ClassData[key].AssignmentName);
              temp_div_assignments.fadeIn(800);
-         }
+        }
      }
 
-     temp_counter = 0;
+     temp_counter = 1;
 }
+
